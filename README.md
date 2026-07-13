@@ -1,191 +1,153 @@
-# 🎤 BMER - Bangla Multimodal Emotion Recognition
+# 🌍 World Time Clock
 
-A secure, privacy-first voice data collection application for Bangla emotion recognition research using speech and text with transformer-based deep learning.
+A beautiful, responsive digital clock that displays the current time across 12 different time zones around the world.
 
 ## ✨ Features
 
-### User Side (Data Collection)
-- ✅ **11 Emotion Categories**: Contempt, Happy, Sad, Angry, Neutral, Fear, Surprise, Confusion, Confidence, Excitement, Disgust
-- ✅ **Easy Recording**: One-click recording interface
-- ✅ **Consent Management**: GDPR-compliant consent collection
-- ✅ **Optional Demographics**: Age and District information
-- ✅ **PWA Support**: Install as mobile app
-- ✅ **Offline Support**: Record offline, sync when online
-- ✅ **Responsive Design**: Works on all devices
+- ⏰ Real-time updates every second
+- 🌍 12 different time zones
+- 🎨 Beautiful gradient background
+- 📱 Fully responsive design
+- 🏃 Smooth animations
+- 🎯 Emoji icons for each location
+- ⚡ Fast and lightweight
+- 🔤 Monospace font for accuracy
 
-### Admin Side (Dashboard)
-- 🔐 **Admin Login**: Secure authentication
-- 📊 **Dashboard**: Real-time statistics by emotion
-- 🗂️ **Organized Storage**: Emotions in separate folders
-- 🔍 **Advanced Search**: Filter by age, gender, district, emotion, date
-- ⬇️ **Batch Download**: Download as ZIP files
-- 📈 **Data Analytics**: Insights and reports
+## 🌐 Time Zones Included
 
-### Security Features
-- 🔐 **End-to-End Encryption**: TweetNaCl.js
-- 🔒 **Firebase Security Rules**: Strict access control
-- 🎲 **Random File Names**: UUID-based storage
-- 🛡️ **Admin-Only Access**: No public URLs
-- 🔑 **Encryption Keys**: Securely managed
+1. 🗽 **New York** - America/New_York
+2. 🇬🇧 **London** - Europe/London
+3. 🏙️ **Dubai** - Asia/Dubai
+4. 🇹🇭 **Bangkok** - Asia/Bangkok
+5. 🗾 **Tokyo** - Asia/Tokyo
+6. 🦘 **Sydney** - Australia/Sydney
+7. 🇧🇩 **Dhaka** - Asia/Dhaka
+8. 🏝️ **Singapore** - Asia/Singapore
+9. 🇭🇰 **Hong Kong** - Asia/Hong_Kong
+10. 🌴 **Los Angeles** - America/Los_Angeles
+11. 🍁 **Toronto** - America/Toronto
+12. 🇧🇷 **São Paulo** - America/Sao_Paulo
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js 14+
 - npm or yarn
-- Firebase account
-- Git
 
 ### Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/nazmulhaque814/BMER-app.git
-   cd BMER-app
-   ```
+```bash
+# Clone or download the project
+cd world-time-clock
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+# Install dependencies
+npm install
 
-3. **Setup Firebase**
-   - Create a Firebase project at https://console.firebase.google.com
-   - Enable: Authentication, Firestore, Storage
-   - Copy Firebase config
+# Start the development server
+npm start
+```
 
-4. **Configure environment**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your Firebase credentials
-   ```
-
-5. **Run the application**
-   ```bash
-   npm run dev
-   ```
+The app will open at `http://localhost:3000`
 
 ## 📁 Project Structure
 
 ```
-BMER-app/
-├── public/              # Static files & PWA assets
+world-time-clock/
+├── public/
+│   └── index.html
 ├── src/
-│   ├── components/      # React components
-│   ├── utils/           # Helper functions
-│   ├── hooks/           # Custom hooks
-│   ├── styles/          # CSS files
-│   ├── App.jsx          # Main app
-│   └── index.jsx        # Entry point
-├── backend/             # Node.js backend
+│   ├── components/
+│   │   └── DigitalClock.jsx
+│   ├── styles/
+│   │   ├── global.css
+│   │   ├── App.css
+│   │   └── DigitalClock.css
+│   ├── App.jsx
+│   └── index.jsx
 ├── package.json
-└── .env.example
+└── README.md
 ```
 
-## 🔐 Security Implementation
+## 🎨 Styling
 
-### Firebase Storage Rules
-```
-- Only admins can read files
-- Anyone can upload
-- No one can list or delete
-```
+- **Background**: Purple gradient (from #667eea to #764ba2)
+- **Cards**: White with hover animations
+- **Time Display**: Large monospace font with glow effect
+- **UTC Offset**: Calculated and displayed for each timezone
+- **Responsive**: Mobile, tablet, and desktop friendly
 
-### Firestore Rules
-```
-- Users can only create documents
-- Admins have full access
-```
+## 🔧 How It Works
 
-## 💾 Firebase Structure
+1. **Time Retrieval**: Uses `Intl.DateTimeFormat` API to get current time in each timezone
+2. **Real-time Updates**: Updates every second using `setInterval`
+3. **UTC Offset Calculation**: Automatically calculates UTC offset for each timezone
+4. **Responsive Grid**: Uses CSS Grid for responsive layout
+5. **Clean Up**: Clears interval on component unmount
 
-### Storage
-```
-voices/
-  ├── happy/
-  ├── sad/
-  ├── angry/
-  ├── neutral/
-  ├── fear/
-  ├── surprise/
-  ├── contempt/
-  ├── confusion/
-  ├── confidence/
-  ├── excitement/
-  └── disgust/
-```
+## 📱 Responsive Design
 
-### Firestore
-```
-voices/ collection
-  ├── voice_id (string)
-  ├── emotion (string)
-  ├── storage_url (string)
-  ├── age (number, optional)
-  ├── gender (string, optional)
-  ├── district (string, optional)
-  ├── device (string)
-  ├── duration (number)
-  ├── sample_rate (number)
-  ├── timestamp (date)
-  └── consent_version (string)
-```
+- **Desktop**: 4 columns grid
+- **Tablet**: 2-3 columns grid
+- **Mobile**: 1 column grid
 
-## 📖 Usage
-
-### For Users
-1. Visit the app URL
-2. Review and accept consent
-3. Enter optional demographic info
-4. Select an emotion
-5. Record your voice
-6. Submit
-
-### For Admins
-1. Login with admin credentials
-2. View dashboard statistics
-3. Browse organized voice files
-4. Search and filter data
-5. Download as needed
-
-## 📱 PWA Installation
-
-- **Android**: Click install button in Chrome
-- **iOS**: Use Share → Add to Home Screen
-- **Desktop**: Click install in the address bar
-
-## 🛠️ Development
+## 🚀 Build for Production
 
 ```bash
-# Start development server
-npm start
-
-# Start backend server
-npm run server
-
-# Run both
-npm run dev
-
-# Build for production
+# Create production build
 npm run build
+
+# This creates optimized files in the 'build' folder
 ```
 
-## 📝 License
+## 🌐 Deploy
 
-MIT License - See LICENSE file for details
+You can deploy this app to any platform:
 
-## 👨‍🔬 Research
+### Vercel
+```bash
+npm install -g vercel
+vercel
+```
 
-This project is part of EII (Electronics and Information Institute) research on Bangla emotion recognition using multimodal approaches.
+### Netlify
+```bash
+npm install -g netlify-cli
+netlify deploy --prod --dir=build
+```
 
-## ⚠️ Important Notes
+### Firebase Hosting
+```bash
+firebase deploy
+```
 
-1. **Data Privacy**: All voice data is encrypted end-to-end
-2. **Consent**: Explicit consent required from all contributors
-3. **Research Only**: Data will be used only for research purposes
-4. **No Commercial Use**: Voices cannot be used commercially
-5. **Data Retention**: Specify retention period in your terms
+## 💡 Features to Add
+
+- [ ] Add/remove custom time zones
+- [ ] 12/24 hour format toggle
+- [ ] Analog clock display
+- [ ] Dark/Light theme toggle
+- [ ] Timezone search
+- [ ] Save favorite timezones
+- [ ] Alarm settings
+- [ ] Sound notifications
+
+## 🐛 Known Issues
+
+- None currently!
+
+## 🤝 Contributing
+
+Feel free to fork and submit pull requests with improvements!
+
+## 📄 License
+
+MIT License - feel free to use this project for anything.
+
+## 📧 Contact
+
+- GitHub: [@nazmulhaque814](https://github.com/nazmulhaque814)
+- Email: nazmulhaquesagor814@gmail.com
 
 ---
 
-**Made with ❤️ for Bangla NLP Research**
+**Made with ❤️ by Nazmul Haque**

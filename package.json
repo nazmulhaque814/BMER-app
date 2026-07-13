@@ -1,34 +1,20 @@
 {
-  "name": "bmer-app",
+  "name": "world-time-clock",
   "version": "1.0.0",
-  "description": "Bangla Multimodal Emotion Recognition - Voice Data Collection App",
-  "main": "backend/server.js",
+  "description": "World Time Clock - Display current time in different time zones",
+  "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "server": "node backend/server.js",
-    "dev": "concurrently \"npm start\" \"npm run server\"",
-    "deploy": "firebase deploy"
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.0",
-    "firebase": "^10.7.0",
-    "tweetnacl": "^1.0.3",
-    "tweetnacl-util": "^0.15.1",
-    "uuid": "^9.0.1",
-    "axios": "^1.6.0",
-    "express": "^4.18.2",
-    "firebase-admin": "^12.0.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "react-scripts": "5.0.1",
-    "concurrently": "^8.2.0"
+    "react-scripts": "5.0.1"
   },
   "eslintConfig": {
     "extends": ["react-app"]
@@ -36,6 +22,5 @@
   "browserslist": {
     "production": [">0.2%", "not dead", "not op_mini all"],
     "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
-  },
-  "proxy": "http://localhost:5000"
+  }
 }
