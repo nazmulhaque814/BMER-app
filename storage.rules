@@ -1,0 +1,23 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Allow anyone to upload voice files
+    match /voices/{emotion}/{fileName} {
+      allow create: if request.auth == null || request.auth != null;
+      allow read: if isAdmin();
+      allow update, delete: if isAdmin();
+      allow list: if isAdmin();
+    }
+
+    // Deny all other access
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+
+  // Helper function to check if user is admin
+  function isAdmin() {
+    return request.auth != null && 
+           request.auth.token.admin == true;
+  }
+}

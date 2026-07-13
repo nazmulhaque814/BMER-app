@@ -1,0 +1,22 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow anyone to create voice documents
+    match /voices/{document=**} {
+      allow create: if request.auth == null || request.auth != null;
+      allow read, update, delete: if isAdmin();
+      allow list: if isAdmin();
+    }
+
+    // Admin collection
+    match /admins/{document=**} {
+      allow read, write: if isAdmin();
+    }
+  }
+
+  // Helper function to check if user is admin
+  function isAdmin() {
+    return request.auth != null && 
+           request.auth.token.admin == true;
+  }
+}
