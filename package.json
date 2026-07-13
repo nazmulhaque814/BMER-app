@@ -2,14 +2,15 @@
   "name": "bmer-app",
   "version": "1.0.0",
   "description": "Bangla Multimodal Emotion Recognition - Voice Data Collection App",
-  "main": "index.js",
+  "main": "backend/server.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "node backend/server.js",
-    "dev": "concurrently \"npm start\" \"npm run server\""
+    "dev": "concurrently \"npm start\" \"npm run server\"",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -17,8 +18,13 @@
     "react-router-dom": "^6.20.0",
     "firebase": "^10.7.0",
     "tweetnacl": "^1.0.3",
+    "tweetnacl-util": "^0.15.1",
     "uuid": "^9.0.1",
-    "axios": "^1.6.0"
+    "axios": "^1.6.0",
+    "express": "^4.18.2",
+    "firebase-admin": "^12.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
   },
   "devDependencies": {
     "react-scripts": "5.0.1",
