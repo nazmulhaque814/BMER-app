@@ -1,0 +1,135 @@
+.emotion-selection {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.emotion-selection .container {
+  max-width: 1000px;
+}
+
+.emotion-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+}
+
+.emotion-header h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.emotion-header p {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.emotion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.emotion-card {
+  background: white;
+  border: 3px solid transparent;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.emotion-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.emotion-card.selected {
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  transform: scale(1.05);
+}
+
+.emotion-emoji {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.emotion-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.selected-indicator {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #10b981;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.selected-emotion {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  margin-bottom: 30px;
+  backdrop-filter: blur(10px);
+}
+
+.selected-emotion p {
+  font-size: 18px;
+}
+
+.selected-emotion strong {
+  color: #fbbf24;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.buttons .btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+}
+
+.buttons .btn-primary {
+  background-color: white;
+  color: #667eea;
+}
+
+.buttons .btn-primary:hover:not(:disabled) {
+  background-color: #f0f0f0;
+}
+
+.buttons .btn-secondary {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+}
+
+@media (max-width: 768px) {
+  .emotion-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .emotion-header h1 {
+    font-size: 24px;
+  }
+}

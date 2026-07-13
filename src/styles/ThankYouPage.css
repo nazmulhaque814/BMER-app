@@ -1,0 +1,135 @@
+.thank-you-page {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.thank-you-page .container {
+  max-width: 600px;
+}
+
+.thank-you-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.heart-animation {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: heartBeat 1s infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.1); }
+  50% { transform: scale(1.15); }
+}
+
+.thank-you-card h1 {
+  font-size: 32px;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.main-message {
+  font-size: 18px;
+  color: #667eea;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.details {
+  background: #f0fdf4;
+  border-left: 4px solid #10b981;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.details p {
+  font-size: 14px;
+  color: #166534;
+  margin: 8px 0;
+}
+
+.impact {
+  background: #eff6ff;
+  border-left: 4px solid #3b82f6;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.impact h3 {
+  font-size: 16px;
+  color: #1e40af;
+  margin-bottom: 10px;
+}
+
+.impact p {
+  font-size: 14px;
+  color: #1e40af;
+  line-height: 1.6;
+}
+
+.share-section {
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.share-section h3 {
+  font-size: 16px;
+  color: #92400e;
+  margin-bottom: 8px;
+}
+
+.share-section p {
+  font-size: 14px;
+  color: #b45309;
+  margin-bottom: 12px;
+}
+
+.btn-share {
+  background-color: #f59e0b;
+  color: white;
+  width: 100%;
+}
+
+.btn-share:hover {
+  background-color: #d97706;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.buttons .btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .thank-you-card {
+    padding: 20px;
+  }
+
+  .thank-you-card h1 {
+    font-size: 24px;
+  }
+
+  .heart-animation {
+    font-size: 60px;
+  }
+}
