@@ -1,1 +1,89 @@
-import React, { useState, useEffect } from 'react';\nimport '../styles/DigitalClock.css';\n\nconst DigitalClock = () => {\n  const [times, setTimes] = useState({});\n\n  const timeZones = [\n    { name: 'New York', zone: 'America/New_York', emoji: '🗽' },\n    { name: 'London', zone: 'Europe/London', emoji: '🇬🇧' },\n    { name: 'Dubai', zone: 'Asia/Dubai', emoji: '🏙️' },\n    { name: 'Bangkok', zone: 'Asia/Bangkok', emoji: '🇹🇭' },\n    { name: 'Tokyo', zone: 'Asia/Tokyo', emoji: '🗾' },\n    { name: 'Sydney', zone: 'Australia/Sydney', emoji: '🦘' },\n    { name: 'Dhaka', zone: 'Asia/Dhaka', emoji: '🇧🇩' },\n    { name: 'Singapore', zone: 'Asia/Singapore', emoji: '🏝️' },\n    { name: 'Hong Kong', zone: 'Asia/Hong_Kong', emoji: '🇭🇰' },\n    { name: 'Los Angeles', zone: 'America/Los_Angeles', emoji: '🌴' },\n    { name: 'Toronto', zone: 'America/Toronto', emoji: '🍁' },\n    { name: 'São Paulo', zone: 'America/Sao_Paulo', emoji: '🇧🇷' },\n  ];\n\n  useEffect(() => {\n    const updateTime = () => {\n      const newTimes = {};\n      timeZones.forEach(tz => {\n        const formatter = new Intl.DateTimeFormat('en-US', {\n          timeZone: tz.zone,\n          hour: '2-digit',\n          minute: '2-digit',\n          second: '2-digit',\n          hour12: true,\n        });\n        newTimes[tz.zone] = formatter.format(new Date());\n      });\n      setTimes(newTimes);\n    };\n\n    updateTime();\n    const interval = setInterval(updateTime, 1000);\n    return () => clearInterval(interval);\n  }, []);\n\n  return (\n    <div className=\"digital-clock-container\">\n      <div className=\"clock-header\">\n        <h1>🌍 World Time Clock</h1>\n        <p>Current time across different time zones</p>\n      </div>\n\n      <div className=\"clock-grid\">\n        {timeZones.map((tz) => (\n          <div key={tz.zone} className=\"clock-card\">\n            <div className=\"clock-emoji\">{tz.emoji}</div>\n            <div className=\"clock-location\">{tz.name}</div>\n            <div className=\"clock-time\">{times[tz.zone] || '00:00:00'}</div>\n            <div className=\"clock-zone\">UTC {getUTCOffset(tz.zone)}</div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n};\n\n// Helper function to get UTC offset\nfunction getUTCOffset(timeZone) {\n  const date = new Date();\n  const formatter = new Intl.DateTimeFormat('en-US', {\n    timeZone,\n    year: 'numeric',\n    month: '2-digit',\n    day: '2-digit',\n    hour: '2-digit',\n    minute: '2-digit',\n    second: '2-digit',\n    hour12: false,\n  });\n\n  const parts = formatter.formatToParts(date);\n  const tzDate = new Date(\n    `${parts[4].value}-${parts[0].value}-${parts[2].value}T${parts[6].value}:${parts[8].value}:${parts[10].value}Z`\n  );\n  const offset = (date - tzDate) / (1000 * 60 * 60);\n  const sign = offset >= 0 ? '+' : '-';\n  const hours = Math.abs(Math.floor(offset));\n  const minutes = Math.abs((offset % 1) * 60);\n  return `${sign}${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;\n}\n\nexport default DigitalClock;\n
+import React, { useState, useEffect } from 'react';
+import '../styles/DigitalClock.css';
+
+const DigitalClock = () => {
+  const [times, setTimes] = useState({});
+
+  const timeZones = [
+    { name: 'New York', zone: 'America/New_York', flag: 'US' },
+    { name: 'London', zone: 'Europe/London', flag: 'UK' },
+    { name: 'Dubai', zone: 'Asia/Dubai', flag: 'AE' },
+    { name: 'Bangkok', zone: 'Asia/Bangkok', flag: 'TH' },
+    { name: 'Tokyo', zone: 'Asia/Tokyo', flag: 'JP' },
+    { name: 'Sydney', zone: 'Australia/Sydney', flag: 'AU' },
+    { name: 'Dhaka', zone: 'Asia/Dhaka', flag: 'BD' },
+    { name: 'Singapore', zone: 'Asia/Singapore', flag: 'SG' },
+    { name: 'Hong Kong', zone: 'Asia/Hong_Kong', flag: 'HK' },
+    { name: 'Los Angeles', zone: 'America/Los_Angeles', flag: 'LA' },
+    { name: 'Toronto', zone: 'America/Toronto', flag: 'CA' },
+    { name: 'Sao Paulo', zone: 'America/Sao_Paulo', flag: 'BR' },
+  ];
+
+  useEffect(() => {
+    const updateTime = () => {
+      const newTimes = {};
+      timeZones.forEach(tz => {
+        const formatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: tz.zone,
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true,
+        });
+        newTimes[tz.zone] = formatter.format(new Date());
+      });
+      setTimes(newTimes);
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="digital-clock-container">
+      <div className="clock-header">
+        <h1>World Time Clock</h1>
+        <p>Current time across different time zones</p>
+      </div>
+
+      <div className="clock-grid">
+        {timeZones.map((tz) => (
+          <div key={tz.zone} className="clock-card">
+            <div className="clock-flag">{tz.flag}</div>
+            <div className="clock-location">{tz.name}</div>
+            <div className="clock-time">{times[tz.zone] || '00:00:00'}</div>
+            <div className="clock-zone">UTC {getUTCOffset(tz.zone)}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// Helper function to get UTC offset
+function getUTCOffset(timeZone) {
+  const date = new Date();
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  });
+
+  const parts = formatter.formatToParts(date);
+  const tzDate = new Date(
+    `${parts[4].value}-${parts[0].value}-${parts[2].value}T${parts[6].value}:${parts[8].value}:${parts[10].value}Z`
+  );
+  const offset = (date - tzDate) / (1000 * 60 * 60);
+  const sign = offset >= 0 ? '+' : '-';
+  const hours = Math.abs(Math.floor(offset));
+  const minutes = Math.abs((offset % 1) * 60);
+  return `${sign}${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+}
+
+export default DigitalClock;
